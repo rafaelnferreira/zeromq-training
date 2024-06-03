@@ -1,5 +1,7 @@
 package global.training;
 
+import java.time.LocalDateTime;
+
 import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
 import org.zeromq.ZMQ.Socket;
@@ -14,6 +16,8 @@ public class SubEnv
 
     public static void main(String[] args)
     {
+        LocalDateTime start = LocalDateTime.now();
+
         // Prepare our context and subscriber
         try (ZContext context = new ZContext()) {
             Socket subscriber = context.createSocket(SocketType.SUB);
@@ -22,10 +26,10 @@ public class SubEnv
 
             while (!Thread.currentThread().isInterrupted()) {
                 // Read envelope with address
-                String address = subscriber.recvStr();
+                String topic = subscriber.recvStr();
                 // Read message contents
                 String contents = subscriber.recvStr();
-                System.out.println(address + " : " + contents);
+                System.out.println(String.format("[%s] received from topic: %s, process started at: %s", LocalDateTime.now(), topic, start));
             }
         }
     }

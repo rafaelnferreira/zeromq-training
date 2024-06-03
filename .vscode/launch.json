@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Util",
+            "request": "launch",
+            "mainClass": "global.training.Util",
+            "projectName": "zeromq-training"
+        },
+        {
+            "type": "java",
             "name": "SubEnv",
             "request": "launch",
             "mainClass": "global.training.SubEnv",
