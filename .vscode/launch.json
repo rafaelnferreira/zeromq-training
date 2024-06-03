@@ -6,10 +6,24 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SubEnv",
+            "request": "launch",
+            "mainClass": "global.training.SubEnv",
+            "projectName": "zeromq-training"
+        },
+        {
+            "type": "java",
+            "name": "PubEnv",
+            "request": "launch",
+            "mainClass": "global.training.PubEnv",
+            "projectName": "zeromq-training"
+        },
+        {
+            "type": "java",
             "name": "SubscriberMain",
             "request": "launch",
             "mainClass": "global.training.SubscriberMain",
-            "projectName": "zeromq"
+            "projectName": "zeromq-training"
         },
         {
             "type": "java",
@@ -22,7 +36,7 @@
             "name": "Broker",
             "request": "launch",
             "mainClass": "global.training.Main",
-            "projectName": "zeromq",
+            "projectName": "zeromq-training",
             "args": [
                 "broker",
                 5010,
@@ -35,7 +49,7 @@
             "name": "Client",
             "request": "launch",
             "mainClass": "global.training.Main",
-            "projectName": "zeromq",
+            "projectName": "zeromq-training",
             "args": [
                 "client",
                 5010,

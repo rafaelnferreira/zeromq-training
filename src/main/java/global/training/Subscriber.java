@@ -18,7 +18,7 @@ public class Subscriber implements IAttachedRunnable {
     @Override
     public void run(Object[] args, ZContext ctx, Socket pipe) {
         Socket subscriber = ctx.createSocket(SocketType.SUB);
-        subscriber.connect("tcp://MACBOOK37.local:" + port);
+        subscriber.connect("tcp://" + Util.HOST_NAME + ":" + port);
 
         int count = 0;
 

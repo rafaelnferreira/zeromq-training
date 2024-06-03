@@ -10,9 +10,6 @@ import org.zeromq.ZMQ.Socket;
 import org.zeromq.ZThread;
 import org.zeromq.ZThread.IAttachedRunnable;
 
-
-
-
 public class Main {
 
     
@@ -48,7 +45,7 @@ public class Main {
         public void run(Object[] args, ZContext ctx, Socket pipe)
         {
             Socket publisher = ctx.createSocket(SocketType.PUB);
-            publisher.connect("tcp://localhost:" + port);
+            publisher.connect("tcp://" + Util.HOST_NAME + ":" + port);
 
             while (!Thread.currentThread().isInterrupted()) {
                 
@@ -74,8 +71,6 @@ public class Main {
 
             }
 
-            notifyAll();
-            
         }
     }
 
@@ -106,11 +101,11 @@ public class Main {
         if ("broker".equalsIgnoreCase((mode))) {
             // Create the xsub socket
             ZMQ.Socket subscriber = context.createSocket(SocketType.XSUB);
-            subscriber.bind("tcp://localhost:" + subPort);
+            subscriber.bind("tcp://" + Util.HOST_NAME + ":" + subPort);
 
             // Create the xpub socket
             ZMQ.Socket publisher = context.createSocket(SocketType.XPUB);
-            publisher.bind("tcp://localhost:" + pubPort);
+            publisher.bind("tcp://" + Util.HOST_NAME + ":" + pubPort);
 
             Socket listener = ZThread.fork(context, new Listener());
             ZMQ.proxy(subscriber, publisher, listener);
